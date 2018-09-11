@@ -9,6 +9,9 @@ from io import BytesIO, StringIO
 from lxml import etree
 from pathlib import Path
 from shutil import rmtree, make_archive, move
+from dotenv import load_dotenv
+
+load_dotenv()
 
 xslt_doc = etree.parse("dictionaryapi.xslt")
 xslt_transformer = etree.XSLT(xslt_doc)
@@ -20,19 +23,21 @@ dir_words.mkdir(parents=True, exist_ok=True)
 (dir_archive / 'Ungrouped').mkdir(exist_ok=True)
 
 data_csv = dir_words / 'Data.csv'
-api_client = dictionaryapi.DictionaryApi(os.environ['API_KEY'])
+api_client = dictionaryapi.DictionaryApi(os.environ['API_KEY'], "words.sqlite3")
 
 with open(data_csv, 'w', newline='') as csvfile:
     csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"')
-    csv_writer.writerow(['1 Text', '2 HTML'])
+    csv_writer.writerow(['1 Text', '2 HTML', '3 Text'])
     for line in fileinput.input():
-        word = line.strip()
+        parts = line.strip().split(" >", maxsplit=1)
+        word, example = parts if len(parts) == 2 else (parts[0], '')
         if word != '':
+            print("lookup {0}".format(word))
             r = api_client.lookup(word)
             doc = etree.parse(BytesIO(r.encode('utf-8')))
             buffer = BytesIO()
             xslt_transformer(doc).write(buffer)
-            csv_writer.writerow([word, buffer.getvalue().decode('utf-8')])
+            csv_writer.writerow([word, buffer.getvalue().decode('utf-8'), example])
 
 # with open(data_csv, 'w', newline='') as csvfile:
 #     csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"')
