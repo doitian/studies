@@ -3,7 +3,6 @@ import os
 import io
 import csv
 import fileinput
-import time
 import dictionaryapi
 import lxml.html
 from io import BytesIO, StringIO
@@ -30,7 +29,6 @@ with open(data_csv, 'w', newline='') as csvfile:
         word = line.strip()
         if word != '':
             r = api_client.lookup(word)
-            time.sleep(0.5)
             doc = etree.parse(BytesIO(r.encode('utf-8')))
             buffer = BytesIO()
             xslt_transformer(doc).write(buffer)
