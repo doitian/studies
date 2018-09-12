@@ -36,6 +36,9 @@ def gen_dict(root_dir: Path, input):
                 print("lookup {0}".format(word))
                 r = api_client.lookup(word)
                 doc = etree.parse(BytesIO(r.encode('utf-8')))
+                word_stem = doc.xpath("//ew")[0].text
+                if word != word_stem:
+                    word = word_stem + ' > ' + word
                 buffer = BytesIO()
                 xslt_transformer(doc).write(buffer)
                 csv_writer.writerow([word, buffer.getvalue().decode('utf-8'), example])
