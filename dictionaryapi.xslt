@@ -21,8 +21,7 @@
   <xsl:template match="entry">
     <xsl:if test="ew = $ew">
       <dt>
-        <xsl:apply-templates select="fl" />&#160;
-        <xsl:apply-templates select="pr" />
+        <xsl:apply-templates select="fl" />&#160;<xsl:apply-templates select="pr" /><xsl:apply-templates select="vr" />
       </dt>
       <dd style="margin:0;padding:0;">
         <xsl:apply-templates select="def" />
@@ -107,17 +106,13 @@
   <xsl:template match="uro">
     <li>
       <strong>— <xsl:value-of select="ure" /></strong>&#160;
-      <xsl:apply-templates select="pr" />&#160;
-      <xsl:apply-templates select="fl" />
-      <xsl:apply-templates select="def" />
+      <xsl:apply-templates select="pr" />&#160;<xsl:apply-templates select="fl" /><xsl:apply-templates select="def" />
     </li>
   </xsl:template>
   <xsl:template match="dro">
     <li>
       <strong>— <xsl:value-of select="drp" /></strong>&#160;
-      <xsl:apply-templates select="pr" />&#160;
-      <xsl:apply-templates select="fl" />
-      <xsl:apply-templates select="def" />
+      <xsl:apply-templates select="pr" />&#160;<xsl:apply-templates select="fl" /><xsl:apply-templates select="def" />
     </li>
   </xsl:template>
   <xsl:template match="date">
@@ -133,7 +128,6 @@
     <span style="font-size:0.8em;"><xsl:value-of select="translate(., $lowercase, $uppercase)" /></span>
   </xsl:template>
   <xsl:template match="date"></xsl:template>
-  <xsl:template match="sd">
-    ;<em style="padding:0 0.3em;"><xsl:value-of select="." /></em>
-  </xsl:template>
+  <xsl:template match="sd">;<em style="padding:0 0.3em;"><xsl:value-of select="." /></em></xsl:template>
+  <xsl:template match="vr"><xsl:apply-templates select="pr" /></xsl:template>
 </xsl:stylesheet>
