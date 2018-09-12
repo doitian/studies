@@ -8,6 +8,7 @@
   <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
   <xsl:variable name="ew" select="*/entry[1]/ew/text()" />
 
+  <xsl:key name="vt" match="*[name() != 'vt']" use="generate-id(preceding-sibling::vt[1])"/>
   <xsl:key name="sn_outer" match="sn[regexp:match(., '^[a-z]')]" use="generate-id(preceding-sibling::sn[regexp:match(., '^[0-9]')][1])"/>
   <xsl:key name="sn_inner" match="dt|slb" use="generate-id(preceding-sibling::sn[1])"/>
 
@@ -39,9 +40,24 @@
     <code>\ <xsl:value-of select="." /> \</code>
   </xsl:template>
   <xsl:template match="def">
-    <xsl:apply-templates select="vt" />
-    <xsl:apply-templates select="vi" />
     <xsl:choose>
+      <xsl:when test="vt">
+        <xsl:for-each select="vt">
+          <p><xsl:value-of select="." /></p>
+          <xsl:choose>
+            <xsl:when test="key('vt', generate-id())[name() = 'sn']">
+              <ol style="margin:0;padding:0 0 0 1.5em;">
+                <xsl:apply-templates select="key('vt', generate-id())[name() = 'sn' and regexp:match(., '^[0-9]')]" />
+              </ol>
+            </xsl:when>
+            <xsl:otherwise>
+              <ol style="list-style:none;margin:0;padding:0 0 1.5em;">
+                <li><xsl:apply-templates select="key('vt', generate-id())" /></li>
+              </ol>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:for-each>
+      </xsl:when>
       <xsl:when test="sn">
         <ol style="margin:0;padding:0 0 0 1.5em;">
           <xsl:apply-templates select="sn[regexp:match(., '^[0-9]')]" />
@@ -49,7 +65,7 @@
       </xsl:when>
       <xsl:otherwise>
         <ol style="list-style:none;margin:0;padding:0 0 1.5em;">
-          <li><xsl:apply-templates select="slb|dt" /></li>
+          <li><xsl:apply-templates select="*" /></li>
         </ol>
       </xsl:otherwise>
     </xsl:choose>
@@ -110,10 +126,14 @@
   <xsl:template match="it|fl|d_link|dxt">
     <em><xsl:value-of select="." /></em>
   </xsl:template>
-  <xsl:template match="vt|vi">
-    <p><xsl:value-of select="." /></p>
+  <xsl:template match="vi">
+    <span style="color:#5690B1;"> • </span><em><xsl:value-of select="." /></em>
   </xsl:template>
   <xsl:template match="sx">
     <span style="font-size:0.8em;"><xsl:value-of select="translate(., $lowercase, $uppercase)" /></span>
+  </xsl:template>
+  <xsl:template match="date"></xsl:template>
+  <xsl:template match="sd">
+    ;<em style="padding:0 0.3em;"><xsl:value-of select="." /></em>
   </xsl:template>
 </xsl:stylesheet>
