@@ -8,7 +8,7 @@ WORDS_FILE_NAME = 'kindle_vocabulary.txt'
 VOCAB_DB_PATH = '/Volumes/Kindle/system/vocabulary/vocab.db'
 
 QUERY_SQL = """
-SELECT WORDS.word, LOOKUPS.usage || ' —— ' || BOOK_INFO.title
+SELECT WORDS.stem, LOOKUPS.usage || ' — ' || BOOK_INFO.title
 FROM WORDS
        LEFT JOIN LOOKUPS ON WORDS.id = LOOKUPS.word_key
        LEFT JOIN BOOK_INFO ON LOOKUPS.book_key = BOOK_INFO.id
