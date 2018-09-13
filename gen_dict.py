@@ -30,7 +30,7 @@ def gen_dict(root_dir: Path, input):
         csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"')
         csv_writer.writerow(['1 Text', '2 HTML', '3 Text'])
         for line in input:
-            parts = line.strip().split(" >", maxsplit=1)
+            parts = line.strip().split(" :", maxsplit=1)
             word, example = parts if len(parts) == 2 else (parts[0], '')
             if word != '':
                 print("lookup {0}".format(word))

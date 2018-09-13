@@ -1,2 +1,2 @@
-friend >We are friend.
+friend :We are friend.
 abandon
