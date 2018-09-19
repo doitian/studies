@@ -29,7 +29,7 @@ def gen_kindle_vocabulary(root_path: Path):
 
     with open(words_path, "w") as of:
         for row in c.execute(QUERY_SQL):
-            print("{0} >{1}".format(*row), file=of)
+            print("{0} :{1}".format(*row), file=of)
 
     return words_path
 
