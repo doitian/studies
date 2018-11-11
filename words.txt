@@ -1,2 +1,0 @@
-friend :We are friend.
-abandon
