@@ -1,7 +1,10 @@
+import sys
 import requests
 import sqlite3
 from pathlib import Path
 from urllib.parse import urlencode, quote_plus
+from lxml import etree
+from io import BytesIO
 
 API_ENDPOINT = 'https://www.dictionaryapi.com/api/v1/references/collegiate/xml/{0}?'
 
@@ -22,6 +25,14 @@ def create_tables(conn):
     c.close()
 
 
+def make_tree(text):
+    try:
+        return etree.parse(BytesIO(text.encode('utf-8')))
+    except:
+        print("Fail to lookup word, the response is {}".format(text), file=sys.stderr)
+        raise
+
+
 class DictionaryApi:
     def __init__(self, api_key, cache_db_path: Path):
         query_string = urlencode({'key': api_key}, quote_via=quote_plus)
@@ -31,19 +42,21 @@ class DictionaryApi:
 
     def lookup(self, word):
         if self.cache_db is None:
-            return self.lookup_without_cache(word)
+            return make_tree(self.lookup_without_cache(word))
 
         c = self.cache_db.cursor()
         c.execute('SELECT word, explanation FROM words WHERE word=?', (word,))
         result = c.fetchone()
         self.cache_db.commit()
 
-        if result is None:
-            result = [word, self.lookup_without_cache(word)]
-            c.execute('INSERT INTO words(word, explanation) VALUES (?,?)', result)
-            self.cache_db.commit()
+        if result is not None:
+            return make_tree(result[1])
 
-        return result[1]
+        result = [word, self.lookup_without_cache(word)]
+        tree = make_tree(result[1])
+        c.execute('INSERT INTO words(word, explanation) VALUES (?,?)', result)
+        self.cache_db.commit()
+        return tree
 
     def lookup_without_cache(self, word):
         return requests.get(self.api_endpoint.format(quote_plus(word))).text

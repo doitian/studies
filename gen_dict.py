@@ -4,11 +4,10 @@ import io
 import csv
 import fileinput
 import dictionaryapi
-import lxml.html
-from io import BytesIO, StringIO
-from lxml import etree
+from io import BytesIO
 from pathlib import Path
 from shutil import rmtree, make_archive, move
+from lxml import etree
 
 script_dir = Path(os.path.dirname(os.path.realpath(__file__)))
 
@@ -24,7 +23,8 @@ def gen_dict(root_dir: Path, input):
     (dir_archive / 'Ungrouped').mkdir(exist_ok=True)
 
     data_csv = dir_words / 'Data.csv'
-    api_client = dictionaryapi.DictionaryApi(os.environ['API_KEY'], root_dir / "words.sqlite3")
+    api_client = dictionaryapi.DictionaryApi(
+        os.environ['API_KEY'], root_dir / "words.sqlite3")
 
     with open(data_csv, 'w', newline='') as csvfile:
         csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"')
@@ -34,14 +34,14 @@ def gen_dict(root_dir: Path, input):
             word, example = parts if len(parts) == 2 else (parts[0], '')
             if word != '':
                 print("lookup {0}".format(word))
-                r = api_client.lookup(word)
-                doc = etree.parse(BytesIO(r.encode('utf-8')))
+                doc = api_client.lookup(word)
                 word_stem = doc.xpath("//ew")[0].text
                 if word != word_stem:
                     word = word_stem + ' > ' + word
                 buffer = BytesIO()
                 xslt_transformer(doc).write(buffer)
-                csv_writer.writerow([word, buffer.getvalue().decode('utf-8'), example])
+                csv_writer.writerow(
+                    [word, buffer.getvalue().decode('utf-8'), example])
 
     # with open(data_csv, 'w', newline='') as csvfile:
     #     csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"')
