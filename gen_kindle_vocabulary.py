@@ -15,6 +15,10 @@ FROM WORDS
 WHERE WORDS.category = 0
 """
 
+MARK_SQL = """
+UPDATE WORDS SET category = 100
+"""
+
 
 def ensure_words_path(root_path: Path):
     out_dir = root_path / 'out'
@@ -30,6 +34,8 @@ def gen_kindle_vocabulary(root_path: Path):
     with open(words_path, "w") as of:
         for row in c.execute(QUERY_SQL):
             print("{0} :{1}".format(*row), file=of)
+
+    c.execute(MARK_SQL)
 
     return words_path
 
