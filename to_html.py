@@ -29,7 +29,7 @@ def to_html(root):
     with open(script_dir / 'sakura.css') as css_file:
         css_content = css_file.read()
 
-    with open(root / 'Data.csv', encoding='utf-16') as csv_file:
+    with open(root / 'Data.csv', encoding='utf-8') as csv_file:
         reader = csv.DictReader(csv_file)
         html_body = ''
         for row in reader:
