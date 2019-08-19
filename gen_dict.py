@@ -33,10 +33,10 @@ def gen_dict(root_dir: Path, input):
             if word != '':
                 print("lookup {0}".format(word))
                 entries = api_client.lookup(word)
-                word_stem = entries[0]['hwi']['hw']
-                if word != word_stem:
-                    word = word_stem + ' > ' + word
-                html = template.render(entries=entries)
+                stem = entries[0]['meta']['id'].split(':', 1)[0]
+                html = template.render(entries=entries, word=word, stem=stem)
+                if word != stem:
+                    word = stem + ' > ' + word
                 csv_writer.writerow(
                     [word, html, example])
 
@@ -45,7 +45,8 @@ def gen_dict(root_dir: Path, input):
     #     csv_writer.writerow(['1 Text', '2 HTML'])
     #     import json
     #     entries = json.load(open('friend.json'))
-    #     html = template.render(entries=entries)
+    #     stem = entries[0]['meta']['id'].split(':', 1)[0]
+    #     html = template.render(entries=entries, word="friend", stem=stem)
     #     print(html)
     #     csv_writer.writerow(['friend', html])
 
