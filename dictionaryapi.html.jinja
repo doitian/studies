@@ -1,0 +1,17 @@
+<dl>
+{%- set hw = entries[0].hwi.hw -%}
+
+{%- for entry in entries -%}
+  {%- if entry.hwi.hw == hw -%}
+  <dt>{{ entry.fl }}&#160;
+    {%- for pr in entry.hwi.prs %} <code>\ {{ pr.mw }} \</code>{% endfor -%}
+  </dt>
+  <dd style="margin:0;padding:0;"><ol style="margin:0;padding:0 0 0 1.5em;">
+    {%- for def in entry.shortdef -%}
+      <li>{{ def }}</li>
+    {%- endfor -%}
+    </ol>
+  </dd>
+  {%- endif -%}
+{%- endfor -%}
+</dl>

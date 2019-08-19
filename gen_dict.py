@@ -4,17 +4,15 @@ import io
 import csv
 import fileinput
 import dictionaryapi
-from io import BytesIO
 from pathlib import Path
-from shutil import rmtree, make_archive, move
-from lxml import etree
+from shutil import make_archive, move
+from jinja2 import Template
 
 script_dir = Path(os.path.dirname(os.path.realpath(__file__)))
 
 
 def gen_dict(root_dir: Path, input):
-    xslt_doc = etree.parse(str(script_dir / "dictionaryapi.xslt"))
-    xslt_transformer = etree.XSLT(xslt_doc)
+    template = Template(open(script_dir / "dictionaryapi.html.jinja").read())
 
     out_dir = root_dir / 'out' / 'Words'
     dir_archive = out_dir / 'Archive'
@@ -34,23 +32,22 @@ def gen_dict(root_dir: Path, input):
             word, example = parts if len(parts) == 2 else (parts[0], '')
             if word != '':
                 print("lookup {0}".format(word))
-                doc = api_client.lookup(word)
-                word_stem = doc.xpath("//ew")[0].text
+                entries = api_client.lookup(word)
+                word_stem = entries[0]['hwi']['hw']
                 if word != word_stem:
                     word = word_stem + ' > ' + word
-                buffer = BytesIO()
-                xslt_transformer(doc).write(buffer)
+                html = template.render(entries=entries)
                 csv_writer.writerow(
-                    [word, buffer.getvalue().decode('utf-8'), example])
+                    [word, html, example])
 
     # with open(data_csv, 'w', newline='') as csvfile:
     #     csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"')
     #     csv_writer.writerow(['1 Text', '2 HTML'])
-    #     doc = etree.parse('friend.xml')
-    #     buffer = BytesIO()
-    #     xslt_transformer(doc).write(buffer, pretty_print=True)
-    #     print(buffer.getvalue().decode('utf-8'))
-    #     csv_writer.writerow(['friend', buffer.getvalue().decode('utf-8')])
+    #     import json
+    #     entries = json.load(open('friend.json'))
+    #     html = template.render(entries=entries)
+    #     print(html)
+    #     csv_writer.writerow(['friend', html])
 
     make_archive(out_dir, 'zip', out_dir)
     target = root_dir / 'out' / 'Words.studyarch'
