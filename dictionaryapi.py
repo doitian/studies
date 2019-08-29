@@ -2,7 +2,7 @@ import sys
 import requests
 import sqlite3
 from pathlib import Path
-from urllib.parse import urlencode, quote_plus
+from urllib.parse import urlencode, quote_plus, quote
 import json
 from io import BytesIO
 
@@ -60,7 +60,7 @@ class DictionaryApi:
         return parsed
 
     def lookup_without_cache(self, word):
-        return requests.get(self.api_endpoint.format(quote_plus(word))).text
+        return requests.get(self.api_endpoint.format(quote(word))).text
 
 
 if __name__ == "__main__":
