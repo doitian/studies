@@ -1,5 +1,5 @@
 words:
-	pipenv run python gen_dict.py '/Users/ian/Library/Mobile Documents/iCloud~is~workflow~my~workflows/Documents/words.txt'
+	pipenv run python gen_dict.py words.txt
 	open out/Words.studyarch
 
 kindle_extract:
