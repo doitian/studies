@@ -1,0 +1,58 @@
+name: Publish Words.studyarch
+
+on:
+  push:
+    branches: [ publish ]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Cache virtualenv
+      uses: actions/cache@v1
+      with:
+        path: ~/.local/share/virtualenvs
+        key: ${{ runner.os }}-pipenv-${{ hashFiles('Pipfile') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Cache for app
+      uses: actions/cache@v1
+      with:
+        path: cache
+        key: cache-app
+
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install --upgrade pipenv
+        pipenv sync
+
+    - name: Create .env
+      run: |
+        echo "API_KEY=${{ secrets.API_KEY }}" > .env
+
+    - name: Generate Words.studyarch
+      run: |
+        if [ -f cache/words.sqlite3 ]; then
+          cp cache/words.sqlite3 .
+        fi
+
+        pipenv run python gen_dict.py publish-words.txt
+
+        mkdir -p cache
+        cp -f words.sqlite3 cache/words.sqlite3
+
+    - name: Upload Words.studyarch
+      uses: actions/upload-artifact@v1
+      with:
+        name: Words.studyarch
+        path: out/Words.studyarch
