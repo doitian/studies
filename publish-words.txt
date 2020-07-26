@@ -1,9 +1,2 @@
-head :Many people in Dallas continue to work and play outdoors, but they are heeding warnings of health officials to protect themselves.
-firsthand :Maria Salgado knows about the illness firsthand, having come down with it in her native Mexico some years ago.
-dizzy :It gave me a high fever, pain in the bones and I felt dizzy and did not want to get up.
-county :Both the county and city of Dallas have declared emergencies and have started spraying the entire area with chemicals that target the mosquitoes that speed West Nile virus.
-spray :Both the county and city of Dallas have declared emergencies and have started spraying the entire area with chemicals that target the mosquitoes that speed West Nile virus.
-mosquito :Both the county and city of Dallas have declared emergencies and have started spraying the entire area with chemicals that target the mosquitoes that speed West Nile virus.
-aerial :The aerial effort has been disrupted at times by storm systems moving through the area.
-ripe :Because we have had drought throughout and a little less drought in our areas than the rest of the state. And now we are having wet and it's hot, that may have something to do with making the conditions so ripe.
-pesticide :Honey bees are on our farm to help my farm be more productive and we know that bees are very sensitive to this pesticide.
+proponent :New York Mayor Michael Bloomberg, a proponent of stricter gun control, asks city residents to pray for the victims of the shooting.
+prominent :New Yorker Vincent Thomas, a psychology student says gun fire at the prominent places like the Empire State Building is not typical, but also not surprising.
