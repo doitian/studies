@@ -1,2 +1,10 @@
-proponent :New York Mayor Michael Bloomberg, a proponent of stricter gun control, asks city residents to pray for the victims of the shooting.
-prominent :New Yorker Vincent Thomas, a psychology student says gun fire at the prominent places like the Empire State Building is not typical, but also not surprising.
+manhunt :A manhunt has been underway since the weekend in Kenya for a gang of poachers that killed a family of elephants.
+poacher :A manhunt has been underway since the weekend in Kenya for a gang of poachers that killed a family of elephants.
+ivory :Poaching is on the rise across Africa as demand grows in Asia for ivory and rhino horns.
+rhino :Poaching is on the rise across Africa as demand grows in Asia for ivory and rhino horns.
+tusk :realized they had already taken off with the tusks.
+occasional :Tracking is being hampered somewhat by occasional heavy rainfall.
+lucrative :With the lucrative business that is poaching, that is ivory trade, we are having lots and lots of groups of poachers.
+proliferation :Mbugwa said the proliferation of firearms has only made matters worse.
+parliament :He says anti-poaching operations should be increased, and parliament needs to pass proposed legislation handing down tough penalties for poaching.
+legislation :He says anti-poaching operations should be increased, and parliament needs to pass proposed legislation handing down tough penalties for poaching.
