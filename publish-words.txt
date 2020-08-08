@@ -1,8 +1,4 @@
-breeder :Nuclear Industry proponents say this fast-breeder reactor offers a panacea for resource-pool Japan’s energy woes.
-panacea :Nuclear Industry proponents say this fast-breeder reactor offers a panacea for resource-pool Japan’s energy woes.
-woe :Nuclear Industry proponents say this fast-breeder reactor offers a panacea for resource-pool Japan’s energy woes.
-vessel :In 2010, a three ton pieces of equipment fell on the reactor vessel.
-deputy :MONJU’s Deputy Director General Takehide Deshimaru says the plant once again is gathering up to resume full operations.
-turbine :If all goes according to the plan, sometime next year the turbines in this room will start spinning again.
-contemplate :I'm confident the solid majority of Japanese who were contemplating the country’s energy policy will return to support our industry.
-clandestine :They say international inspections and Japanese law ensure MONJU’s plutonium cannot be diverted to any clandestine weapon’s project.
+raid :Attacks and security raids are daily occurrences in recent months.
+poverty :There is absolute poverty in the environment.
+prevail :An oppressive atmosphere prevails along the city streets.
+jihadist :The drivers of the common motor taxi-say they are regularity abused by security forces—who suspect them of transporting members of the jihadist group.
