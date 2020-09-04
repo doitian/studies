@@ -1,5 +1,3 @@
-symptom :But while the drug helped eliminate symptoms of his disease, Sampson started having headaches, gained weight, developed insomnia and even became diabetic.
-diabetic :But while the drug helped eliminate symptoms of his disease, Sampson started having headaches, gained weight, developed insomnia and even became diabetic.
-regimen :Doctor Miller took an in-depth look at Sampson's medical history and lifestyle, and designed a customized regimen of nutrition and exercise that she believed would improve his health and make him less dependent on medication.
-holistic :Motivated by the desire to offer patients more holistic medical treatment, Miller set out on a 3- year journey around the globe to study the traditional diets of her patient .
-dietary :There's lot of research which has come together to tell us that our focus should be on healthy foods, and those overall healthy, food-based dietary patterns should really be the focus of our priority in the US and globally.
+stimulant :For decades, doctors have treated them with stimulant caffeine, even though there is little evidence to justify it.
+placebo :In the earlier stage of this study, some 2000 premature babies in 9 countries were randomly assigned to get caffeine or placebo.
+impairment :Schmidt writes in the paper that rates of cognitive impairment at five years were much lower than at eighteen months.
