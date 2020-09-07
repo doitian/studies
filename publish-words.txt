@@ -1,3 +1,4 @@
-stimulant :For decades, doctors have treated them with stimulant caffeine, even though there is little evidence to justify it.
-placebo :In the earlier stage of this study, some 2000 premature babies in 9 countries were randomly assigned to get caffeine or placebo.
-impairment :Schmidt writes in the paper that rates of cognitive impairment at five years were much lower than at eighteen months.
+Danish :But according to Danish researcher Niels Graudal of Copenhagen University Hospital, the effect of reduced-salt diet is less dramatic than you might think.
+hypertension :In patients with hypertension, the effect was somewhat bigger.
+sodium :But the study also found that people on a low-sodium diet had higher level of cholesterol, which is associated with an increased risk of heart disease.
+cholesterol :But the study also found that people on a low-sodium diet had higher level of cholesterol, which is associated with an increased risk of heart disease.
