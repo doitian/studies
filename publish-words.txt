@@ -1,4 +1,3 @@
-Danish :But according to Danish researcher Niels Graudal of Copenhagen University Hospital, the effect of reduced-salt diet is less dramatic than you might think.
-hypertension :In patients with hypertension, the effect was somewhat bigger.
-sodium :But the study also found that people on a low-sodium diet had higher level of cholesterol, which is associated with an increased risk of heart disease.
-cholesterol :But the study also found that people on a low-sodium diet had higher level of cholesterol, which is associated with an increased risk of heart disease.
+parasite :Sleeping sickness is spread by a parasite that infects the central nervous system.
+arsenic :One is an arsenic-based drug that kills 5% of users.
+infect :The World Health Organization estimates that between 50,000 and 70,000 people in sub-Saharan Africa are infected with sleeping sickness.
