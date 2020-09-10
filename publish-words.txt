@@ -1,3 +1,2 @@
-parasite :Sleeping sickness is spread by a parasite that infects the central nervous system.
-arsenic :One is an arsenic-based drug that kills 5% of users.
-infect :The World Health Organization estimates that between 50,000 and 70,000 people in sub-Saharan Africa are infected with sleeping sickness.
+clinical :There will basically no safety data in pregnancy with this specific vaccine prior to its being used in clinical practice.
+trimester :The study compared 330 babies whose mothers received the vaccine in the first trimester of pregnancy with the same number of babies whose mothers were not vaccinated.
