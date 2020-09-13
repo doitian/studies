@@ -1,2 +1,3 @@
-beverage :Coffee is one of the world’s most widely enjoyed beverages.
-antioxidant :There are a few chemical that are known to be antioxidants in coffee.
+pancreatic :Scientists in University of Pennsylvania have found a novel way of treating pancreatic cancer.
+tumor :Instead of attacking the tumor itself, the immune system targeted what’s called the scaffold.
+scaffold :Instead of attacking the tumor itself, the immune system targeted what’s called the scaffold.
