@@ -1,1 +1,2 @@
-sentinel :These appear to be the high-tech RQ 170 Sentinel Drone, brought down somehow with minimum damage.
+refuel :That means less time in the air to refuel other planes out on missions.
+furlough :All reserve civilians will be furloughed one day a week if the budget cuts go into effect.
