@@ -1,3 +1,2 @@
-rot :Food is trying to rot all the time, so you gotta keep it dry, you gotta keep it cool and you gotta transport it and use it as quickly as possible.
-ought :Certainly once you get it to the supermarket, they have very high standards about what it ought to look like, never mind about how it ought to taste or whether it is edible or valuable.
-cosmetic :But exactly how it ought to look, so we throw a lot away just because it is not cosmetically attractive.
+spinach :Congress passed the law after a series of outbreaks linked to bagged spinach, peanut butter and other foods.
+provision :The Congressional Budget Office estimates that establishing all the provisions of the law will cost the government $1.4 billion.
