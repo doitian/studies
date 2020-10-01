@@ -1,7 +1,1 @@
-prefecture :Fukushima prefecture and spinach from Ibaraki prefecture have been found to be contaminated.
-contaminate :Fukushima prefecture and spinach from Ibaraki prefecture have been found to be contaminated.
-hose :In the meantime, fireman using high-powered hoses on the firetrucks, have been shuttling in and out of the plant to spray water directly on reactor elements. 
-shuttle :VERB If someone or something shuttles or is shuttled from one place to another place, they frequently go from one place to the other.
-sievert :The reading there, very slightly elevated from Friday, was 21.80 micro-sieverts per hour at 6pm Saturday.
-cripple :Japan’s government has imposed a 20-kilometer evacuation zone around the crippled plant.
-makeshift :More than 200,000 people living near the 40-year-old nuclear powered generating facility have left their homes, with most of them moving into makeshift shelters far away from the plant.
+yield :This yield here has a drought tolerance, you know, drought gene.
