@@ -1,1 +1,4 @@
-yield :This yield here has a drought tolerance, you know, drought gene.
+farmstead :Jim Denevan is arranging tables for more than a hundred dinner guests on Briars Farmstead in rural Virginia.
+rural :Jim Denevan is arranging tables for more than a hundred dinner guests on Briars Farmstead in rural Virginia.
+culinary :It’s what Denevan calls a culinary adventure.
+ecological :Matt Szechenyi runs this ecological farm along with his family.
