@@ -1,4 +1,5 @@
-farmstead :Jim Denevan is arranging tables for more than a hundred dinner guests on Briars Farmstead in rural Virginia.
-rural :Jim Denevan is arranging tables for more than a hundred dinner guests on Briars Farmstead in rural Virginia.
-culinary :It’s what Denevan calls a culinary adventure.
-ecological :Matt Szechenyi runs this ecological farm along with his family.
+scoop :A few dozen volunteers scoop globs of white rice and vegetables into small styrofoam bowls.
+glob :A few dozen volunteers scoop globs of white rice and vegetables into small styrofoam bowls.
+styrofoam :A few dozen volunteers scoop globs of white rice and vegetables into small styrofoam bowls.
+checkup :Nearly 300 homeless men stand in line waiting for their food, others receive free medical check-ups.
+dormitory :That is because in Japan, contract workers often live in the dormitories provided by their companies.
