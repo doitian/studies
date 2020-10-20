@@ -1,5 +1,5 @@
-satirize :The XYZ show, now in its seventh season, satirizes Kenya’s politicians and other personalities using puppets.
-puppet :The XYZ show, now in its seventh season, satirizes Kenya’s politicians and other personalities using puppets.
-lampoon :No well-known figure is spared, and right now, political candidates are being lampooned in the lead-up to next week’s election.
-lead-up :No well-known figure is spared, and right now, political candidates are being lampooned in the lead-up to next week’s election.
-revolve :I’d say right now, the whole country is very polarized and people have taken sides and all conversations, whether on social media, on the streets, in corners, in villages, is all revolving around politics.
+stall :Flower stalls are overflowing.
+frown :Romantic love and flirting are frowned upon in Pakistan.
+smuggle :So Mohammad only talked to Shamoona when her parents were not around on a cell phone smuggled to her by her cousin.
+obedient :And, normally the children are obedient—the parents show them photographs of who they have chosen and they accept and get married.
+exile :It can also result in social exile.
