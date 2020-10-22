@@ -1,5 +1,2 @@
-stall :Flower stalls are overflowing.
-frown :Romantic love and flirting are frowned upon in Pakistan.
-smuggle :So Mohammad only talked to Shamoona when her parents were not around on a cell phone smuggled to her by her cousin.
-obedient :And, normally the children are obedient—the parents show them photographs of who they have chosen and they accept and get married.
-exile :It can also result in social exile.
+disaffected :Those who grew up disaffected and cynical at the end of the 20th Century, “Generation X”.
+cynical :Those who grew up disaffected and cynical at the end of the 20th Century, “Generation X”.
