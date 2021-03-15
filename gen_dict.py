@@ -31,11 +31,12 @@ def gen_dict(root_dir: Path, input):
                 print("lookup {0}".format(word))
                 entries = api_client.lookup(word)
                 stem = entries[0]['meta']['id'].split(':', 1)[0]
-                definition = template.render(entries=entries, word=word, stem=stem)
+                definition = template.render(
+                    entries=entries, word=word, stem=stem)
                 if word != stem:
                     word = stem + ' > ' + word
                 csv_writer.writerow(
-                    [word, '{}<hr /><blockquote>{}</blockquote>'.format(definition, html.escape(example))])
+                    [html.escape(word), '{}<hr /><blockquote>{}</blockquote>'.format(definition, html.escape(example))])
 
 
 if __name__ == '__main__':
