@@ -1,6 +1,6 @@
 words:
 	python gen_dict.py words.txt
-	open out/Words.studyarch
+	open -a Anki.app out/Words.csv
 
 kindle:
 	python gen_kindle_vocabulary.py
