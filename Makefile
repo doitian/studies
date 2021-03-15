@@ -1,9 +1,9 @@
 words:
-	pipenv run python gen_dict.py words.txt
-	open out/Words.studyarch
+	python gen_dict.py words.txt
+	open -a Anki.app out/Words.csv
 
 kindle:
-	pipenv run python gen_kindle_vocabulary.py
+	python gen_kindle_vocabulary.py
 	cat out/kindle_vocabulary.txt >> words.txt
 
 clean:
