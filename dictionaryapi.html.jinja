@@ -18,10 +18,27 @@
   </dt>
   <dd style="margin:0;padding:0;"><ol style="margin:0;padding:0 0 0 1.5em;">
     {%- for def in entry.shortdef -%}
-      <li>{{ def }}</li>
+      <li>
+        {{ def }}
+        {%- for sseq_item in entry.def[loop.index0].sseq[0] -%}
+          {%- if sseq_item[0] == "sense" -%}
+            {%- for dt_item in sseq_item[1].dt -%}
+              {%- if dt_item[0] == "vis" -%}
+        <blockquote>
+          {{ dt_item[1][0].t | replace("{wi}", "<em>") | replace("{/wi}", "</em>") }}
+          {%- if 'aq' in dt_item[1][0] -%}
+          <footer>– {{ dt_item[1][0].aq.auth }}</footer>
+          {%- endif %}
+        </blockquote>
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </li>
     {%- endfor -%}
     </ol>
   </dd>
   {%- endif -%}
 {%- endfor -%}
+  <dt><small><a href="https://www.merriam-webster.com/dictionary/{{ stem | replace(" ", "%20") }}">→</a></small></dt>
 </dl>

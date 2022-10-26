@@ -70,4 +70,4 @@ if __name__ == "__main__":
     load_dotenv()
 
     api = DictionaryApi(os.environ['API_KEY'], "words.sqlite3")
-    print(json.dumps(api.lookup('friend')))
+    print(json.dumps(api.lookup('erstwhile')))

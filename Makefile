@@ -1,9 +1,9 @@
-SHORTCUTS_WORDS := "$$HOME/Library/Mobile Documents/iCloud~is~workflow~my~workflows/Documents/words.txt"
-
-words:
-	! [ -e ${SHORTCUTS_WORDS} ] || (( $$(cat ${SHORTCUTS_WORDS} | wc -l) == 0 ))
+words: words.txt
 	python gen_dict.py words.txt
 	open -a Anki.app out/Words.csv
+
+words.txt:
+	ln -snf "$$HOME/Library/Mobile Documents/iCloud~is~workflow~my~workflows/Documents/words.txt" words.txt
 
 kindle:
 	python gen_kindle_vocabulary.py
@@ -12,5 +12,4 @@ kindle:
 clean:
 	rm -rf out
 
-.PHONY: words clean
-.PHONY: kindle
+.PHONY: words clean kindle
