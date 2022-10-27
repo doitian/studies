@@ -5,6 +5,7 @@ import csv
 import html
 import fileinput
 import dictionaryapi
+import json
 from pathlib import Path
 from shutil import make_archive, move
 from jinja2 import Template
