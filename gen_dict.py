@@ -36,8 +36,10 @@ def gen_dict(root_dir: Path, input):
                     entries=entries, word=word, stem=stem)
                 if word != stem:
                     word = stem + ' > ' + word
+                if not example.startswith('<'):
+                    example = html.escape(example)
                 csv_writer.writerow(
-                    [html.escape(word), '{}<hr /><blockquote>{}</blockquote>'.format(definition, html.escape(example))])
+                    [html.escape(word), '{}<hr /><blockquote>{}</blockquote>'.format(definition, example)])
 
 
 if __name__ == '__main__':
