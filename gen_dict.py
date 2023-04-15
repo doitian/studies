@@ -38,6 +38,8 @@ def gen_dict(root_dir: Path, input):
                     word = stem + ' > ' + word
                 if not example.startswith('<'):
                     example = html.escape(example)
+                    example = re.sub(r'(?<!\\)\*\*(?<!\\)(.*?[^\\])\*\*', r'<b>\1</b>', example)
+                    example = re.sub(r'(?<!\\)\*(.*?[^\\])\*', r'<i>\1</i>', example)
                 csv_writer.writerow(
                     [html.escape(word), '{}<hr /><blockquote>{}</blockquote>'.format(definition, example)])
 
