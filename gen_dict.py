@@ -1,13 +1,11 @@
 #!/usr/bin/env python
 import os
-import io
 import csv
 import html
 import fileinput
 import dictionaryapi
-import json
+import re
 from pathlib import Path
-from shutil import make_archive, move
 from jinja2 import Template
 
 script_dir = Path(os.path.dirname(os.path.realpath(__file__)))
