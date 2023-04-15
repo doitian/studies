@@ -25,6 +25,12 @@ def gen_dict(root_dir: Path, input):
 
     with open(data_csv, 'w', newline='') as csvfile:
         csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"')
+
+        csv_writer.writerow(['#separator:Comma'])
+        csv_writer.writerow(['#html:true'])
+        csv_writer.writerow(['#deck:English Vocabulary'])
+        csv_writer.writerow(['#notetype:ian-basic'])
+
         for line in input:
             parts = [p.strip() for p in line.split(':', maxsplit=1)]
             word, example = parts if len(parts) == 2 else (parts[0], '')
