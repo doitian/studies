@@ -3,13 +3,13 @@
   {%- set entry_stem = entry.meta.id.split(":", 1)[0] -%}
   {%- if entry_stem == stem -%}
   <dt>{{ entry.fl }}&#160;
-    {%- for pr in entry.hwi.prs %} <code>\ {{ pr.mw }} \</code>{% endfor -%}
+    {%- for pr in entry.hwi.prs %} <span class="mw">\ {{ pr.mw }} \</span>{% endfor -%}
     {%- if stem != word -%}
       <ul style="list-style:none;margin:0;padding:0 0 0 1.5em;">
       {%- for uro in entry.get("uros", []) -%}
         {%- if uro.ure|replace("*", "") == word -%}
         <li><b>{{ uro.ure }}</b> {{uro.fl}}&#160;
-        {%- for pr in uro.prs %} <code>\ {{ pr.mw }} \</code>{% endfor -%}
+        {%- for pr in uro.prs %} <span class="mw">\ {{ pr.mw }} \</span>{% endfor -%}
         </li>
         {%- endif -%}
       {%- endfor -%}
