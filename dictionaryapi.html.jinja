@@ -30,7 +30,7 @@
         {%- for dt_item in sseq_ns.items[loop.index0][1].dt -%}
           {%- if dt_item[0] == "vis" -%}
         <blockquote>
-            {{ dt_item[1][0].t | replace("{wi}", "<em>") | replace("{/wi}", "</em>") }}
+            {{ dt_item[1][0].t | replace("{wi}", "<em>") | replace("{it}", "<em>") | replace("{/wi}", "</em>") | replace("{/it}", "</em>") }}
             {%- if 'aq' in dt_item[1][0] -%}
           <footer>– {{ dt_item[1][0].aq.auth }}</footer>
             {%- endif %}
