@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import os
+import sys
 import csv
 import html
 import fileinput
@@ -35,17 +36,38 @@ def gen_dict(root_dir: Path, input):
             if word != '':
                 print("lookup {0}".format(word))
                 entries = api_client.lookup(word)
-                stem = entries[0]['meta']['id'].split(':', 1)[0]
-                definition = template.render(
-                    entries=entries, word=word, stem=stem)
+                if isinstance(entries[0], str):
+                    if example.startswith('='):
+                        stem = word
+                        definition, example = example[1:].split(
+                            '=:', maxsplit=1)
+                    else:
+                        print(
+                            f"No definition found for {word}", file=sys.stderr)
+                        print(
+                            f"Alternatives {', '.join(entries)}", file=sys.stderr)
+                        print(
+                            "Use :=definition=:example to provide the definition",
+                            file=sys.stderr)
+                        raise RuntimeError("No definition found")
+                else:
+                    stem = entries[0]['meta']['id'].split(':', 1)[0]
+                    definition = template.render(
+                        entries=entries, word=word, stem=stem)
                 if word != stem:
                     word = stem + ' > ' + word
                 if not example.startswith('<'):
                     example = html.escape(example)
-                    example = re.sub(r'(?<!\\)\*\*(?<!\\)(.*?[^\\])\*\*', r'<b>\1</b>', example)
-                    example = re.sub(r'(?<!\\)\*(.*?[^\\])\*', r'<i>\1</i>', example)
-                csv_writer.writerow(
-                    [html.escape(word), '{}<hr /><blockquote>{}</blockquote>'.format(definition, example)])
+                    example = re.sub(
+                        r'(?<!\\)\*\*(?<!\\)(.*?[^\\])\*\*', r'<b>\1</b>', example)
+                    example = re.sub(
+                        r'(?<!\\)\*(.*?[^\\])\*', r'<i>\1</i>', example)
+                if example.strip() == '':
+                    csv_writer.writerow([html.escape(word), definition])
+                else:
+                    content = '{}<hr /><blockquote>{}</blockquote>'.format(
+                        definition, example)
+                    csv_writer.writerow([html.escape(word), content])
 
 
 if __name__ == '__main__':
