@@ -26,7 +26,7 @@ def gen_dict(root_dir: Path, input):
 
         csv_writer.writerow(['#separator:Comma'])
         csv_writer.writerow(['#html:true'])
-        csv_writer.writerow(['#deck:English Vocabulary'])
+        csv_writer.writerow(['#deck:English Learning::English Vocabulary'])
         csv_writer.writerow(['#notetype:ian-basic'])
 
         for line in input:
