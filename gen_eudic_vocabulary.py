@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import fileinput
 import os
-import re
 from bs4 import BeautifulSoup
 from pathlib import Path
 
