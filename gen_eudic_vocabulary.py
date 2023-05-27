@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import fileinput
 import os
-import sqlite3
+import re
 from bs4 import BeautifulSoup
 from pathlib import Path
 
@@ -32,6 +32,10 @@ def gen_eudic_vocabulary(soup, root_path: Path):
             for div in definition.find_all('div'):
                 if len(div.contents) == 0:
                     div.decompose()
+
+            for a in definition.find_all('a', href=True):
+                if a['href'].startswith('https://cn.eudic.net/dict/searchword?'):
+                    a['href'] = f"eudic://dict/{a['href'].split('?word=')[1]}"
 
             definition_text = ' '.join(str(definition).splitlines())
 
