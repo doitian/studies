@@ -3,7 +3,6 @@ import os
 import sqlite3
 from pathlib import Path
 
-WORDS_FILE_NAME = 'kindle_vocabulary.txt'
 VOCAB_DB_PATH = '/Volumes/Kindle/system/vocabulary/vocab.db'
 
 QUERY_SQL = """
@@ -20,9 +19,8 @@ UPDATE WORDS SET category = 100
 
 
 def ensure_words_path(root_path: Path):
-    out_dir = root_path / 'out'
-    out_dir.mkdir(exist_ok=True, parents=True)
-    return out_dir / WORDS_FILE_NAME
+    root_path.mkdir(exist_ok=True, parents=True)
+    return root_path / 'words.txt'
 
 
 def gen_kindle_vocabulary(root_path: Path):
@@ -30,7 +28,7 @@ def gen_kindle_vocabulary(root_path: Path):
     conn = sqlite3.connect(VOCAB_DB_PATH)
     c = conn.cursor()
 
-    with open(words_path, "w") as of:
+    with open(words_path, "a") as of:
         for row in c.execute(QUERY_SQL):
             print("{0} :{1}".format(*row), file=of)
 

@@ -1,4 +1,5 @@
 words: words.txt
+	python add_to_eudic.py words.txt
 	python gen_dict.py words.txt
 	open -a Anki.app out/Words.csv
 
@@ -7,9 +8,11 @@ words.txt:
 
 kindle:
 	python gen_kindle_vocabulary.py
-	cat out/kindle_vocabulary.txt >> words.txt
+
+eudic:
+	python gen_eudic_vocabulary.py
 
 clean:
 	rm -rf out
 
-.PHONY: words clean kindle
+.PHONY: words clean kindle eudic

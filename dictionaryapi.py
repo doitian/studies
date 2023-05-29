@@ -69,5 +69,5 @@ if __name__ == "__main__":
 
     load_dotenv()
 
-    api = DictionaryApi(os.environ['API_KEY'], "words.sqlite3")
+    api = DictionaryApi(os.environ['DICTIONARY_API_KEY'], "words.sqlite3")
     print(json.dumps(api.lookup('erstwhile')))

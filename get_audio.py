@@ -48,7 +48,7 @@ def pr_url(filename):
 
 def lookup_audio(root_dir: Path, word, download):
     api_client = dictionaryapi.DictionaryApi(
-        os.environ['API_KEY'], root_dir / "words.sqlite3")
+        os.environ['DICTIONARY_API_KEY'], root_dir / "words.sqlite3")
 
     entries = api_client.lookup(word)
     csv_writer = csv.writer(sys.stdout, delimiter=',', quotechar='"')

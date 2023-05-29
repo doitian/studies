@@ -8,6 +8,8 @@ beautifulsoup4==4.12.2
     # via -r requirements.in
 certifi==2023.5.7
     # via requests
+cffi==1.15.1
+    # via pycmarkgfm
 charset-normalizer==2.0.12
     # via requests
 idna==3.4
@@ -16,6 +18,10 @@ jinja2==3.1.1
     # via -r requirements.in
 markupsafe==2.1.2
     # via jinja2
+pycmarkgfm==1.2.0
+    # via -r requirements.in
+pycparser==2.21
+    # via cffi
 python-dotenv==0.20.0
     # via -r requirements.in
 requests==2.31.0

@@ -6,6 +6,7 @@ import html
 import fileinput
 import dictionaryapi
 import re
+import pycmarkgfm
 from pathlib import Path
 from jinja2 import Template
 
@@ -20,7 +21,7 @@ def gen_dict(root_dir: Path, input):
 
     data_csv = out_dir / 'Words.csv'
     api_client = dictionaryapi.DictionaryApi(
-        os.environ['API_KEY'], root_dir / "words.sqlite3")
+        os.environ['DICTIONARY_API_KEY'], root_dir / "words.sqlite3")
 
     with open(data_csv, 'w', newline='') as csvfile:
         csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"')
@@ -28,20 +29,22 @@ def gen_dict(root_dir: Path, input):
         csv_writer.writerow(['#separator:Comma'])
         csv_writer.writerow(['#html:true'])
         csv_writer.writerow(['#deck:English Learning::English Vocabulary'])
-        csv_writer.writerow(['#notetype:ian-basic'])
+        csv_writer.writerow(['#notetype:ian-basic-example'])
 
         for line in input:
+            if line.startswith('#'):
+                continue
             parts = [p.strip() for p in line.split(':', maxsplit=1)]
             word, example = parts if len(parts) == 2 else (parts[0], '')
             if word != '':
                 print("lookup {0}".format(word))
-                entries = api_client.lookup(word)
-                if isinstance(entries[0], str):
-                    if example.startswith('='):
-                        stem = word
-                        definition, example = example[1:].split(
-                            '=:', maxsplit=1)
-                    else:
+                if example.startswith('='):
+                    stem = word
+                    definition, example = example[1:].split(
+                        '=:', maxsplit=1)
+                else:
+                    entries = api_client.lookup(word)
+                    if isinstance(entries[0], str):
                         print(
                             f"No definition found for {word}", file=sys.stderr)
                         print(
@@ -50,24 +53,17 @@ def gen_dict(root_dir: Path, input):
                             "Use :=definition=:example to provide the definition",
                             file=sys.stderr)
                         raise RuntimeError("No definition found")
-                else:
+
                     stem = entries[0]['meta']['id'].split(':', 1)[0]
                     definition = template.render(
                         entries=entries, word=word, stem=stem)
+
                 if word != stem:
                     word = stem + ' > ' + word
+                example = example.replace('\\n', '\n')
                 if not example.startswith('<'):
-                    example = html.escape(example)
-                    example = re.sub(
-                        r'(?<!\\)\*\*(?<!\\)(.*?[^\\])\*\*', r'<b>\1</b>', example)
-                    example = re.sub(
-                        r'(?<!\\)\*(.*?[^\\])\*', r'<i>\1</i>', example)
-                if example.strip() == '':
-                    csv_writer.writerow([html.escape(word), definition])
-                else:
-                    content = '{}<hr /><blockquote>{}</blockquote>'.format(
-                        definition, example)
-                    csv_writer.writerow([html.escape(word), content])
+                    example = pycmarkgfm.gfm_to_html(example)
+                csv_writer.writerow([html.escape(word), definition, example])
 
 
 if __name__ == '__main__':
