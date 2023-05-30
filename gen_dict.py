@@ -5,7 +5,6 @@ import csv
 import html
 import fileinput
 import dictionaryapi
-import re
 import pycmarkgfm
 from pathlib import Path
 from jinja2 import Template
@@ -63,7 +62,11 @@ def gen_dict(root_dir: Path, input):
                 example = example.replace('\\n', '\n')
                 if not example.startswith('<'):
                     example = pycmarkgfm.gfm_to_html(example)
-                csv_writer.writerow([html.escape(word), definition, example])
+
+                encoded_stem = stem.replace(" ", "%20")
+                source = f'<a href="eudic://dict/{encoded_stem}">EuDic →</a>'
+                csv_writer.writerow(
+                    [html.escape(word), definition, source, example])
 
 
 if __name__ == '__main__':
