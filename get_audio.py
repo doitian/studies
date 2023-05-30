@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# flake8: noqa: E501
 import sys
 import os
 import re
