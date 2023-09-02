@@ -29,6 +29,7 @@ def gen_eudic_vocabulary(soup, root_path: Path):
             for node in definition.children:
                 if isinstance(node, Comment):
                     node.extract()
+
             # convert links
             for a in definition.find_all('a', href=True):
                 if a['href'].startswith('https://cn.eudic.net/dict/searchword?'):
@@ -58,5 +59,5 @@ def gen_eudic_vocabulary(soup, root_path: Path):
 
 if __name__ == '__main__':
     with fileinput.input(encoding="utf-8") as f:
-        soup = BeautifulSoup(''.join(f), 'html.parser')
+        soup = BeautifulSoup(''.join(f), 'lxml')
     gen_eudic_vocabulary(soup, Path(os.getcwd()))
