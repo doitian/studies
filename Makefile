@@ -1,5 +1,4 @@
 words: words.txt
-	python add_to_eudic.py words.txt
 	python gen_dict.py words.txt
 	open -a Anki.app out/Words.csv
 
