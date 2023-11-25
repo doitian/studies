@@ -23,11 +23,13 @@ if __name__ == "__main__":
     load_dotenv()
 
     parser = argparse.ArgumentParser()
+    parser.add_argument("file", nargs="*")
     # Add the --book argument
     parser.add_argument("--book", help="Specify the book name")
 
     # Parse the command line arguments
     args = parser.parse_args()
+
     if args.book is not None:
         books = requests.get(
             "https://api.frdic.com/api/open/v1/studylist/category?language=en",
@@ -44,9 +46,9 @@ if __name__ == "__main__":
     else:
         book_id = "0"
 
-    words = list(words_generator(fileinput.input()))
+    words = list(words_generator(fileinput.input(args.file)))
     requests.post(
         "https://api.frdic.com/api/open/v1/studylist/words",
         headers={"Authorization": os.environ["EUDIC_TOKEN"]},
-        json={"id": "0", "language": "en", "words": words},
+        json={"id": book_id, "language": "en", "words": words},
     )
