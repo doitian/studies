@@ -26,6 +26,9 @@ if __name__ == "__main__":
     parser.add_argument("file", nargs="*")
     # Add the --book argument
     parser.add_argument("--book", help="Specify the book name")
+    parser.add_argument(
+        "--move", action="store_true", help="Remove from the default book"
+    )
 
     # Parse the command line arguments
     args = parser.parse_args()
@@ -52,3 +55,10 @@ if __name__ == "__main__":
         headers={"Authorization": os.environ["EUDIC_TOKEN"]},
         json={"id": book_id, "language": "en", "words": words},
     )
+
+    if book_id != "0" and args.move:
+        requests.delete(
+            "https://api.frdic.com/api/open/v1/studylist/words",
+            headers={"Authorization": os.environ["EUDIC_TOKEN"]},
+            json={"id": "0", "language": "en", "words": words},
+        )
