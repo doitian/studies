@@ -32,11 +32,15 @@ if __name__ == "__main__":
 
     # Parse the command line arguments
     args = parser.parse_args()
+    headers = {
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:12.0) Gecko/20100101 Firefox/12.0",
+        "Authorization": os.environ["EUDIC_TOKEN"],
+    }
 
     if args.book is not None:
         books = requests.get(
             "https://api.frdic.com/api/open/v1/studylist/category?language=en",
-            headers={"Authorization": os.environ["EUDIC_TOKEN"]},
+            headers=headers,
         ).json()["data"]
         book_id = None
         for book in books:
@@ -52,13 +56,13 @@ if __name__ == "__main__":
     words = list(words_generator(fileinput.input(args.file)))
     requests.post(
         "https://api.frdic.com/api/open/v1/studylist/words",
-        headers={"Authorization": os.environ["EUDIC_TOKEN"]},
+        headers=headers,
         json={"id": book_id, "language": "en", "words": words},
     )
 
     if book_id != "0" and args.move:
         requests.delete(
             "https://api.frdic.com/api/open/v1/studylist/words",
-            headers={"Authorization": os.environ["EUDIC_TOKEN"]},
+            headers=headers,
             json={"id": "0", "language": "en", "words": words},
         )

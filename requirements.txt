@@ -20,7 +20,7 @@ lxml==4.9.3
     # via -r requirements.in
 markupsafe==2.1.2
     # via jinja2
-pycmarkgfm==1.2.0
+pycmarkgfm==1.2.1
     # via -r requirements.in
 pycparser==2.21
     # via cffi
