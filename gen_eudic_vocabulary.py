@@ -39,7 +39,10 @@ def gen_eudic_vocabulary(soup, root_path: Path):
                     img["src"] = "_".join(img["src"].split("/")[-2:])[1:]
             for css in definition.select('link[rel="stylesheet"]'):
                 style_tag = soup.new_tag("style")
-                style_path = "_".join(css["href"].split("/")[-2:])
+                if ":\\" in css["href"]:
+                    style_path = "_".join(css["href"].split("\\")[-2:])
+                else:
+                    style_path = "_".join(css["href"].split("/")[-2:])
                 style_tag.string = f'@import url("{style_path}")'
                 css.replace_with(style_tag)
             for script in definition.select("script"):
