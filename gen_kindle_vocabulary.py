@@ -3,7 +3,7 @@ import os
 import sqlite3
 from pathlib import Path
 
-VOCAB_DB_PATH = "E:/system/vocabulary/vocab.db"
+VOCAB_DB_PATH = "D:/system/vocabulary/vocab.db"
 # '/Volumes/Kindle/system/vocabulary/vocab.db'
 
 QUERY_SQL = """
