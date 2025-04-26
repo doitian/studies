@@ -27,6 +27,7 @@
     {%- for def in entry.shortdef -%}
       <li>
         {{ def }}
+        {%- if loop.index0 in sseq_ns.items -%}
         {%- for dt_item in sseq_ns.items[loop.index0][1].dt -%}
           {%- if dt_item[0] == "vis" -%}
         <blockquote>
@@ -37,6 +38,7 @@
         </blockquote>
           {%- endif -%}
         {%- endfor -%}
+        {%- endif %}
       </li>
     {%- endfor -%}
     </ol>
