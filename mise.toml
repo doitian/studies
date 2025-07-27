@@ -1,0 +1,27 @@
+[env._.python.venv]
+path = ".venv"
+create = true
+
+[tasks.build]
+run = "python gen_dict.py words.txt"
+sources = ['words.txt']
+outputs = ['out/Words.csv']
+
+[tasks."import:kindle"]
+run = "python gen_kindle_vocabulary.py"
+
+[tasks."import:eudic"]
+run = "python gen_eudic_vocabulary.py eudic.html"
+
+[tasks."archive:eudic"]
+run = "python add_to_eudic.py --book Archive --move words.txt"
+
+[tasks."archive:kindle"]
+run = "python add_to_eudic.py --book Kindle words.txt"
+
+[tasks.clean]
+run = "rm -rf out eudic.html"
+run_windows = [
+    "if exist out rd /s /q out",
+    "if exist eudic.html del /q eudic.html",
+]
