@@ -51,6 +51,9 @@ def gen_eudic_vocabulary(soup, root_path: Path):
             example = ""
             if isinstance(definition.contents[0], NavigableString):
                 example = "\\n".join(str(definition.contents[0].extract()).splitlines())
+            # delete leader <br/> from definition
+            while definition.contents and definition.contents[0].name == "br":
+                definition.contents[0].decompose()
 
             definition_text = " ".join(str(definition).splitlines())
 
