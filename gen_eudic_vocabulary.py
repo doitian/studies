@@ -49,12 +49,20 @@ def gen_eudic_vocabulary(soup, root_path: Path):
             for script in definition.select("script"):
                 script.decompose()
 
-            example = ""
-            if isinstance(definition.contents[0], NavigableString):
-                example = "\\n".join(str(definition.contents[0].extract()).splitlines())
-            # delete leader <br/> from definition
-            while definition.contents and definition.contents[0].name == "br":
-                definition.contents[0].decompose()
+            example_parts = []
+            while definition.contents:
+                node = definition.contents[0]
+                if isinstance(node, NavigableString):
+                    example_parts.append(str(node.extract()))
+                elif getattr(node, "name", None) == "b":
+                    example_parts.append(str(node.extract()))
+                elif getattr(node, "name", None) == "br":
+                    node.extract()
+                    example_parts.append("\n")
+                else:
+                    break
+            example = "".join(example_parts).strip()
+            print(example)
 
             definition_text = " ".join(str(definition).splitlines())
 
