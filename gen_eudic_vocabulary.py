@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import sys
 import fileinput
 import os
 import datetime
@@ -63,6 +64,16 @@ def gen_eudic_vocabulary(soup, root_path: Path):
 
 
 if __name__ == "__main__":
-    with fileinput.input(encoding="utf-8") as f:
+    input_files = (
+        sys.argv[1:] if len(sys.argv) > 1 else os.environ.get("usage_file", "").split()
+    )
+    if not input_files or input_files == [""]:
+        print(
+            "No input files provided via arguments or usage_file environment variable.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    with fileinput.input(files=input_files, encoding="utf-8") as f:
         soup = BeautifulSoup("".join(f), "lxml")
     gen_eudic_vocabulary(soup, Path(os.getcwd()))
