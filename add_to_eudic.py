@@ -19,10 +19,6 @@ def words_generator(input):
             yield word
 
 if __name__ == "__main__":
-    from dotenv import load_dotenv
-
-    load_dotenv()
-
     parser = argparse.ArgumentParser()
     parser.add_argument("file", nargs="*")
     # Add the --book argument

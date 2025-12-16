@@ -42,7 +42,4 @@ def build(root_dir: Path, input):
 
 
 if __name__ == '__main__':
-    from dotenv import load_dotenv
-
-    load_dotenv()
     build(Path(os.getcwd()), fileinput.input())
