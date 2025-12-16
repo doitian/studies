@@ -27,7 +27,7 @@ WHERE category = 0
 """
 
 
-def add_kindle_to_words():
+def import_kindle():
     """Add new words from Kindle to words.txt."""
     if not os.path.exists(VOCAB_DB_PATH):
         print(f"Error: Kindle vocabulary database not found at {VOCAB_DB_PATH}", file=sys.stderr)
@@ -79,5 +79,5 @@ def add_kindle_to_words():
 
 
 if __name__ == "__main__":
-    add_kindle_to_words()
+    import_kindle()
 

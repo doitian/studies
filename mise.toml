@@ -3,19 +3,19 @@ path = ".venv"
 create = true
 
 [tasks.build]
-run = "python gen_dict.py words.txt"
+run = "python build.py words.txt"
 sources = ['words.txt']
 outputs = ['out/Words.csv']
 
 [tasks."import:kindle"]
-run = "python gen_kindle_vocabulary.py"
+run = "python import_kindle.py"
 outputs = ["words.txt"]
 
 [tasks."import:eudic"]
 usage = """
 arg "<file>" default="eudic.html"
 """
-run = "python gen_eudic_vocabulary.py"
+run = "python import_eudic.py"
 outputs = ["words.txt"]
 
 [tasks."archive:eudic"]

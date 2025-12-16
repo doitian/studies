@@ -2,7 +2,7 @@
 import sys
 import fileinput
 import os
-import datetime
+import re
 from bs4 import BeautifulSoup, Comment, NavigableString
 from pathlib import Path
 
@@ -12,11 +12,10 @@ def ensure_words_path(root_path: Path):
     return root_path / "words.txt"
 
 
-def gen_eudic_vocabulary(soup, root_path: Path):
+def import_eudic(soup, root_path: Path):
     words_path = ensure_words_path(root_path)
 
-    with open(words_path, "a") as of:
-        print(f"\n# {datetime.datetime.now().isoformat()}", file=of)
+    with open(words_path, "a", encoding="utf-8") as of:
         for row in soup.select(".export-table > tbody > tr"):
             cells = row.find_all("td", recursive=False)
             word = cells[1].get_text()
@@ -31,42 +30,31 @@ def gen_eudic_vocabulary(soup, root_path: Path):
                 if isinstance(node, Comment):
                     node.extract()
 
-            # convert links
-            for a in definition.find_all("a", href=True):
-                if a["href"].startswith("https://cn.eudic.net/dict/searchword?"):
-                    a["href"] = f"eudic://dict/{a['href'].split('?word=')[1]}"
-            for img in definition.find_all("img"):
-                if img["src"].startswith("file:"):
-                    img["src"] = "_".join(img["src"].split("/")[-2:])[1:]
-            for css in definition.select('link[rel="stylesheet"]'):
-                style_tag = soup.new_tag("style")
-                if ":\\" in css["href"]:
-                    style_path = "_".join(css["href"].split("\\")[-2:])
-                else:
-                    style_path = "_".join(css["href"].split("/")[-2:])
-                style_tag.string = f'@import url("{style_path}")'
-                css.replace_with(style_tag)
-            for script in definition.select("script"):
-                script.decompose()
-
+            # Extract only the first example (before any <br>)
+            # Preserve <b> tags in the example
             example_parts = []
             while definition.contents:
                 node = definition.contents[0]
                 if isinstance(node, NavigableString):
                     example_parts.append(str(node.extract()))
                 elif getattr(node, "name", None) == "b":
+                    # Keep <b> tags by converting to string (preserves HTML)
                     example_parts.append(str(node.extract()))
                 elif getattr(node, "name", None) == "br":
-                    node.extract()
-                    example_parts.append("\n")
+                    # Stop at first <br> tag, don't extract it
+                    break
                 else:
                     break
-            example = "".join(example_parts).strip()
-            print(example)
 
-            definition_text = " ".join(str(definition).splitlines())
+            example = "".join(example_parts)
+            # Cleanup: remove nbsp and squash consecutive spaces
+            example = example.replace("&nbsp;", " ")  # HTML entity
+            example = example.replace("\u00A0", " ")  # Unicode non-breaking space
+            example = re.sub(r" +", " ", example).strip()  # Collapse consecutive spaces
 
-            print("{} :={}=:{}".format(word, definition_text, example), file=of)
+            # Format: word: example (same as add_kindle_to_words.py)
+            if example != '':
+                of.write(f"{word}: {example}\n")
 
     return words_path
 
@@ -84,4 +72,4 @@ if __name__ == "__main__":
 
     with fileinput.input(files=input_files, encoding="utf-8") as f:
         soup = BeautifulSoup("".join(f), "lxml")
-    gen_eudic_vocabulary(soup, Path(os.getcwd()))
+    import_eudic(soup, Path(os.getcwd()))
