@@ -14,8 +14,9 @@ def words_generator(input):
     for line in input:
         if line.startswith("#"):
             continue
-        yield line.split(":", maxsplit=1)[0].strip()
-
+        word = line.split(":", maxsplit=1)[0].strip()
+        if word != '':
+            yield word
 
 if __name__ == "__main__":
     from dotenv import load_dotenv
