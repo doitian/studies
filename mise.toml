@@ -33,6 +33,10 @@ run_windows = "type nul > words.txt"
 description = "rm out eudic.html"
 run = "rm -rf out eudic.html"
 run_windows = [
-    "if exist out rd /s /q out",
-    "if exist eudic.html del /q eudic.html",
+  "if exist out rd /s /q out",
+  "if exist eudic.html del /q eudic.html",
 ]
+
+[tasks.syncserver]
+env = { SYNC_USER1 = "ian:12345" }
+run_windows = "{{ exec(command='scoop prefix anki') }}/anki-console --syncserver"
