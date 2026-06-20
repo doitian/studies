@@ -1,3 +1,6 @@
+[env]
+EUDIC_TOKEN = { required = true }
+
 [env._.python.venv]
 path = ".venv"
 create = true
